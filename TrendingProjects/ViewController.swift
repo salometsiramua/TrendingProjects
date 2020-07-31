@@ -12,14 +12,8 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
-        let fetcher = RepositoryFetcherService()
-        fetcher.fetch { (result) in
-            print(result)
-        }
+        // Do any additional setup after loading the view
     }
-
 
 }
 

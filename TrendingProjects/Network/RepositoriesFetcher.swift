@@ -13,10 +13,16 @@ protocol RepositoriesFetcher {
     func fetch(completion: @escaping CompletionCallback)
 }
 
-struct RepositoryFetcherService: RepositoriesFetcher {
+struct RepositoriesFetcherService: RepositoriesFetcher {
+    
+    private let session: NetworkSession
+    
+    init(session: NetworkSession = URLSession.shared) {
+        self.session = session
+    }
     
     func fetch(completion: @escaping CompletionCallback) {
-        ServiceManager<RepositoriesResponse>(Service.repositories, onSuccess: { (response) in
+        ServiceManager<RepositoriesResponse>(session: session, Service.repositories, onSuccess: { (response) in
             
             DispatchQueue.main.async {
                 completion(.success(response))
@@ -27,7 +33,5 @@ struct RepositoryFetcherService: RepositoriesFetcher {
                 completion(.failure(error))
             }
         }
-        
     }
-    
 }

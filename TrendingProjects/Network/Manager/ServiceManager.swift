@@ -14,6 +14,7 @@ protocol MappableResponse {
 
 class ServiceManager<Response: MappableResponse> {
     
+    private(set) var isRunning: Bool = false
     typealias ResponseObject = Response
     
     private let service: Endpoint
@@ -46,9 +47,11 @@ extension ServiceManager {
     private func call() {
        
         let request = HTTPServiceRequest(endpoint: service)
+        isRunning = true
         
         httpService.request(request) { (data, response, error) in
-         
+            
+            self.isRunning = false
             if let error = error {
                 self.onFailureCallback?(error)
                 return
