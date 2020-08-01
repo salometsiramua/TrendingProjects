@@ -16,7 +16,9 @@ class UIColorTests: XCTestCase {
         XCTAssertEqual(UIColor.navigationBarTitle, UIColor(named: "Navigation Bar Title Color"))
         XCTAssertEqual(UIColor.username, UIColor(named: "Username Color"))
         XCTAssertEqual(UIColor.grayBackground, UIColor(named: "Gray Background Color"))
-        XCTAssertEqual(UIColor.borderColor, UIColor(named: "Border Color"))
+        XCTAssertEqual(UIColor.border, UIColor(named: "Border Color"))
+        XCTAssertEqual(UIColor.readme, UIColor(named: "Readme Color"))
+        XCTAssertEqual(UIColor.description, UIColor(named: "Description Color"))
         
     }
 

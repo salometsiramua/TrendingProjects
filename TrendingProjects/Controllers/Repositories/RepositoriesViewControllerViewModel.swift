@@ -22,20 +22,18 @@ class RepositoriesViewControllerViewModel: RepositoriesViewControllerViewModelPr
     private(set) var repositories = PublishSubject<[RepositoryContent]>()
 
     private let repositoriesFetcher: RepositoriesFetcher
+    private let disposeBag = DisposeBag()
     
     init(repositoriesFetcher: RepositoriesFetcher = RepositoriesFetcherService()) {
         self.repositoriesFetcher = repositoriesFetcher
     }
     
     func fetchRepositories() {
-        repositoriesFetcher.fetch { [weak self] (result) in
-            switch result {
-            case .success(let repositories):
-                self?.repositories.onNext(repositories.repositoryContent)
-            case .failure( _):
-                break
-            }
-        }
+        
+        repositoriesFetcher.fetch().subscribe(onNext: { (response) in
+            self.repositories.onNext(response)
+            }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
+
     }
     
 }

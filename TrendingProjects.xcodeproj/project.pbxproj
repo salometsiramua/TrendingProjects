@@ -71,6 +71,11 @@
 		F151C78524D44F560080DDE7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F151C78424D44F560080DDE7 /* Constants.swift */; };
 		F151C78724D451F00080DDE7 /* StringsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F151C78624D451F00080DDE7 /* StringsTests.swift */; };
 		F151C78B24D467B90080DDE7 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F151C78A24D467B90080DDE7 /* ImageLoader.swift */; };
+		F151C78D24D49F280080DDE7 /* ReadMeLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F151C78C24D49F280080DDE7 /* ReadMeLoader.swift */; };
+		F166BCB424D563690053A163 /* RepositoryContentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F166BCB324D563690053A163 /* RepositoryContentTests.swift */; };
+		F166BCB624D567A00053A163 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F166BCB524D567A00053A163 /* String+Extension.swift */; };
+		F166BCB824D571880053A163 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = F166BCB724D571880053A163 /* Reachability.swift */; };
+		F166BCBA24D572BA0053A163 /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F166BCB924D572BA0053A163 /* SpinnerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -149,6 +154,11 @@
 		F151C78424D44F560080DDE7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F151C78624D451F00080DDE7 /* StringsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringsTests.swift; sourceTree = "<group>"; };
 		F151C78A24D467B90080DDE7 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		F151C78C24D49F280080DDE7 /* ReadMeLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadMeLoader.swift; sourceTree = "<group>"; };
+		F166BCB324D563690053A163 /* RepositoryContentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryContentTests.swift; sourceTree = "<group>"; };
+		F166BCB524D567A00053A163 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		F166BCB724D571880053A163 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		F166BCB924D572BA0053A163 /* SpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +241,8 @@
 				F151C6FE24D1D3BC0080DDE7 /* RepositoriesFetcher.swift */,
 				F151C70024D1D41E0080DDE7 /* RepositoryContent.swift */,
 				F151C78A24D467B90080DDE7 /* ImageLoader.swift */,
+				F151C78C24D49F280080DDE7 /* ReadMeLoader.swift */,
+				F166BCB724D571880053A163 /* Reachability.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -268,6 +280,7 @@
 				F151C71D24D327090080DDE7 /* NetworkErrorTests.swift */,
 				F151C71F24D3281E0080DDE7 /* RepositoriesResponseTests.swift */,
 				F151C78024D448BA0080DDE7 /* RepositoriesFetcherServiceTests.swift */,
+				F166BCB324D563690053A163 /* RepositoryContentTests.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -299,6 +312,7 @@
 				F151C73324D3314D0080DDE7 /* UIViewController+Extension.swift */,
 				F151C75524D36DCC0080DDE7 /* UIView+Extension.swift */,
 				F151C76024D404890080DDE7 /* UIColor+Extension.swift */,
+				F166BCB524D567A00053A163 /* String+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -320,6 +334,7 @@
 			children = (
 				F151C75924D380840080DDE7 /* RepositoryDetails */,
 				F151C72224D32A980080DDE7 /* Repositories */,
+				F166BCB924D572BA0053A163 /* SpinnerViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -540,12 +555,16 @@
 				F151C6F324D1C1EC0080DDE7 /* HTTPServiceRequest.swift in Sources */,
 				F151C6F524D1C2130080DDE7 /* HTTPRequest.swift in Sources */,
 				F151C75D24D380B40080DDE7 /* RepositoryDetailsViewController.swift in Sources */,
+				F151C78D24D49F280080DDE7 /* ReadMeLoader.swift in Sources */,
 				F151C6E824D1B68F0080DDE7 /* ServiceManager.swift in Sources */,
 				F151C76124D404890080DDE7 /* UIColor+Extension.swift in Sources */,
 				F151C6FA24D1CD210080DDE7 /* HTTPManagerService.swift in Sources */,
 				F151C6FC24D1CF4C0080DDE7 /* NetworkError.swift in Sources */,
 				F151C6F824D1C2890080DDE7 /* HTTPRequestSession.swift in Sources */,
+				F166BCB624D567A00053A163 /* String+Extension.swift in Sources */,
 				F151C6EB24D1B8AC0080DDE7 /* Service.swift in Sources */,
+				F166BCB824D571880053A163 /* Reachability.swift in Sources */,
+				F166BCBA24D572BA0053A163 /* SpinnerViewController.swift in Sources */,
 				F151C71924D323E00080DDE7 /* Dictionary+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -567,6 +586,7 @@
 				F151C77624D439560080DDE7 /* RatingItemTests.swift in Sources */,
 				F151C73624D331830080DDE7 /* UIViewController+Tests.swift in Sources */,
 				F151C70824D3078B0080DDE7 /* NetworkSessionMock.swift in Sources */,
+				F166BCB424D563690053A163 /* RepositoryContentTests.swift in Sources */,
 				F151C77424D4394A0080DDE7 /* RatingViewTests.swift in Sources */,
 				F151C77B24D445010080DDE7 /* ViewControllerTests.swift in Sources */,
 				F151C71C24D3255F0080DDE7 /* Dictionary+Tests.swift in Sources */,

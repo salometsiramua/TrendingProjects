@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import RxSwift
 @testable import TrendingProjects
 
 struct RepositoriesFetcherSessionMock: NetworkSession {
@@ -50,11 +51,13 @@ class RepositoriesFetcherServiceTests: XCTestCase {
         
         let service = RepositoriesFetcherService(session: RepositoriesFetcherSessionMock())
         
-        let exp = expectation(description: "Repositories fetcher failed")
-        service.fetch { (result) in
+        let exp = expectation(description: "Repositories fetcher succeed")
+        let disposeBag = DisposeBag()
+        
+        service.fetch().subscribe(onNext: { (result) in
             exp.fulfill()
             XCTAssertNotNil(result)
-        }
+            }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
         
         wait(for: [exp], timeout: 0.4)
         

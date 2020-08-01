@@ -13,7 +13,7 @@ class StringsTests: XCTestCase {
     
     func testStringValues() {
         
-        XCTAssertEqual(Strings.backButtonTitle.rawValue, "back")
+        XCTAssertEqual(Strings.backButtonTitle.rawValue, "Back")
         XCTAssertEqual(Strings.forks.rawValue, "Forks")
         XCTAssertEqual(Strings.stars.rawValue, "Stars")
         XCTAssertEqual(Strings.repositoriesListViewControllerTitle.rawValue, "Github Trends")

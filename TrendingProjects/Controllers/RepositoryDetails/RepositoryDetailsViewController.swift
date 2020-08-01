@@ -44,12 +44,9 @@ class RepositoryDetailsViewController: UIViewController {
         viewModel.avatar.bind(to: userImage.rx.image)
             .disposed(by: disposeBag)
         
+        viewModel.readme.bind(to: readMeContent.rx.text).disposed(by: disposeBag)
+        
     }
-    
-    
-    //https://raw.githubusercontent.com/trekhleb/javascript-algorithms/master/README.md
-    
-    //https://github.com/trekhleb/javascript-algorithms
 
 }
 

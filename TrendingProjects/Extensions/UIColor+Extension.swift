@@ -22,8 +22,16 @@ extension UIColor {
         return UIColor(named: "Gray Background Color") ?? UIColor.lightGray
     }
     
-    class var borderColor: UIColor {
+    class var border: UIColor {
         return UIColor(named: "Border Color") ?? UIColor.lightGray
+    }
+    
+    class var readme: UIColor {
+        return UIColor(named: "Readme Color") ?? UIColor.darkGray
+    }
+    
+    class var description: UIColor {
+        return UIColor(named: "Description Color") ?? UIColor.lightGray
     }
 }
 

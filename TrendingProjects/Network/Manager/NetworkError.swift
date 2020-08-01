@@ -15,6 +15,7 @@ enum NetworkError: Error, Equatable {
     case invalidStatusCode
     case responseParsingToJsonDictionary
     case urlIsInvalid
+    case noInternetConnection
 }
 
 extension NetworkError: CustomStringConvertible {
@@ -33,6 +34,8 @@ extension NetworkError: CustomStringConvertible {
             return "Could not parse to json dictionary"
         case .urlIsInvalid:
             return "URL is invalid"
+        case .noInternetConnection:
+            return "No internet connection"
         }
     }
 }

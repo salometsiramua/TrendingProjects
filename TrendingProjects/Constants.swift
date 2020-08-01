@@ -10,7 +10,7 @@ import Foundation
 
 enum Strings: String {
     case repositoriesListViewControllerTitle = "Github Trends"
-    case backButtonTitle = "back"
+    case backButtonTitle = "Back"
     case stars = "Stars"
     case forks = "Forks"
     case readme = "Readme.md"

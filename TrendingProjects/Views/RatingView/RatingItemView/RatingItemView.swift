@@ -40,6 +40,7 @@ extension RatingItemView: RatingItemViewContigurable {
     func configure(with content: RatingItemViewContent) {
         
         valueLabel.text = content.title
+        icon.image = content.image
         
     }
     

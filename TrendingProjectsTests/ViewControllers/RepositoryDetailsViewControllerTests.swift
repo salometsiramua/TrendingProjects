@@ -12,6 +12,8 @@ import RxSwift
 
 struct RepositoryDetailsViewControllerViewModelMock: RepositoryDetailsViewControllerViewModelProtocol {
     
+    var readme = PublishSubject<String>()
+
     var avatar = PublishSubject<UIImage>()
     
     var content: RepositoryContent = RepositoryContent(author: "author", name: "name", avatar: "avatar", url: "url", description: "description", language: "language", languageColor: "#123432", stars: 3, forks: 32, currentPeriodStars: 32, builtBy: [])

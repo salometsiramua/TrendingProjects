@@ -32,9 +32,25 @@ struct RepositoryContent: Codable {
     var builtBy: [User]
 }
 
+extension RepositoryContent {
+    func contains(string: String) -> Bool {
+        guard !string.isEmpty else {
+            return true
+        }
+        
+        return author.contains(substring: string) || name.contains(substring: string) || description.contains(substring: string) || builtBy.filter{ $0.contains(string: string)}.count > 0 || stars.contains(substring: string) || forks.contains(substring: string) || currentPeriodStars.contains(substring: string)
+    }
+}
+
 struct User: Codable {
     var username: String
     var href: String
     var avatar: String
+}
+
+extension User {
+    func contains(string: String) -> Bool {
+        return username.contains(string)
+    }
 }
 

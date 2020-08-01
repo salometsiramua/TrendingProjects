@@ -7,10 +7,10 @@
 //
 
 import Foundation
+import RxSwift
 
 protocol RepositoriesFetcher {
-    typealias CompletionCallback = (Result<RepositoriesResponse, Error>) -> Void
-    func fetch(completion: @escaping CompletionCallback)
+    func fetch() -> Observable<[RepositoryContent]>
 }
 
 struct RepositoriesFetcherService: RepositoriesFetcher {
@@ -21,17 +21,21 @@ struct RepositoriesFetcherService: RepositoriesFetcher {
         self.session = session
     }
     
-    func fetch(completion: @escaping CompletionCallback) {
-        ServiceManager<RepositoriesResponse>(session: session, Service.repositories, onSuccess: { (response) in
+    func fetch() -> Observable<[RepositoryContent]> {
+        return Observable<[RepositoryContent]>.create { (observer) in
             
-            DispatchQueue.main.async {
-                completion(.success(response))
+            guard Reachability.isConnectedToNetwork else {
+                observer.onError(NetworkError.noInternetConnection)
+                return Disposables.create()
             }
             
-        }) { (error) in
-            DispatchQueue.main.async {
-                completion(.failure(error))
+            ServiceManager<RepositoriesResponse>(session: self.session, Service.repositories, onSuccess: { (response) in
+                observer.onNext(response.repositoryContent)
+            }) { (error) in
+                observer.onError(error)
             }
+            
+            return Disposables.create()
         }
     }
 }

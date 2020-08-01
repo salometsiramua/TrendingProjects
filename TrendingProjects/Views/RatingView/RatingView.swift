@@ -33,7 +33,7 @@ class RatingView: UIView {
     }
     
     private func setupViews() {
-        contentView.layer.borderColor = UIColor.borderColor.cgColor
+        contentView.layer.borderColor = UIColor.border.cgColor
         contentView.layer.borderWidth = 1
         contentView.layer.cornerRadius = 4
     }
@@ -48,7 +48,7 @@ extension RatingView: RatingViewContigurable {
        
         starsView.configure(with: RatingItemViewData(title: "\(content.starsCount.description) \(Strings.stars.rawValue)", icon: UIImage(systemName: "star.fill")))
         
-        forksView.configure(with: RatingItemViewData(title: "\(content.forksCount.description) \(Strings.forks.rawValue)", icon: UIImage(systemName: "dots.fill")))
+        forksView.configure(with: RatingItemViewData(title: "\(content.forksCount.description) \(Strings.forks.rawValue)", icon: UIImage(systemName: "arrow.branch")))
         
     }
     

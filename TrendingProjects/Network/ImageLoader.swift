@@ -7,11 +7,11 @@
 //
 
 import Foundation
+import RxSwift
 
 protocol ImageLoader {
     
-    typealias CompletionCallback = (Result<Data, Error>) -> Void
-    func download(from url: String, completion: @escaping CompletionCallback)
+    func download(from url: String) -> Observable<Data>
     
 }
 
@@ -23,19 +23,31 @@ struct ImageLoaderService: ImageLoader {
         self.session = session
     }
     
-    func download(from url: String, completion: @escaping CompletionCallback) {
-        guard let url = URL(string: url) else {
-            completion(.failure(NetworkError.urlIsInvalid))
-            return
+    func download(from url: String) -> Observable<Data> {
+        
+        return Observable<Data>.create { (observer) in
+            
+            guard Reachability.isConnectedToNetwork else {
+                observer.onError(NetworkError.noInternetConnection)
+                return Disposables.create()
+            }
+            
+            guard let url = URL(string: url) else {
+                observer.onError(NetworkError.urlIsInvalid)
+                return Disposables.create()
+            }
+            
+            self.getData(from: url) { data, response, error in
+                guard let data = data, error == nil else {
+                    observer.onError(NetworkError.responseDataIsNil)
+                    return
+                }
+                observer.onNext(data)
+            }
+            
+            return Disposables.create()
         }
         
-        getData(from: url) { data, response, error in
-            guard let data = data, error == nil else {
-                completion(.failure(NetworkError.responseDataIsNil))
-                return
-            }
-            completion(.success(data))
-        }
     }
     
     private func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {

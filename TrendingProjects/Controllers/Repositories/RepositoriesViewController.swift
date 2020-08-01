@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 
 class RepositoriesViewController: UIViewController {
-
+    
     @IBOutlet private(set) weak var tableView: UITableView!
     @IBOutlet private(set) weak var searchBar: UISearchBar!
     
@@ -21,7 +21,7 @@ class RepositoriesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         title = Strings.repositoriesListViewControllerTitle.rawValue
         
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.navigationBarTitle]
@@ -34,20 +34,30 @@ class RepositoriesViewController: UIViewController {
         bindTableView()
         
     }
-
+    
 }
 
 //MARK: - Private functions
 extension RepositoriesViewController {
     
     private func bindTableView() {
-    
+        
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 120
+        tableView.tableFooterView = UIView(frame: .zero)
         
         tableView.register(UINib(nibName: RepositoryTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: RepositoryTableViewCell.identifier)
         
-        viewModel.repositories.bind(to: tableView.rx.items(cellIdentifier: RepositoryTableViewCell.identifier)) { row, model, cell in
+        let observeRepositories = viewModel.repositories
+        let observeSearchText = searchBar.rx.text
+        
+        Observable.combineLatest(
+            observeRepositories, observeSearchText,
+            resultSelector: { value1, value2 in
+                return (value1.filter({ (content) -> Bool in
+                    content.contains(string: value2 ?? "")
+                }))
+            }).bind(to: tableView.rx.items(cellIdentifier: RepositoryTableViewCell.identifier)) { row, model, cell in
             
             guard let cell = cell as? RepositoryTableViewCell else {
                 return
@@ -60,26 +70,10 @@ extension RepositoriesViewController {
         tableView.rx.modelSelected(RepositoryContent.self).subscribe(onNext: { item in
             self.selectedItem = item
             self.performSegue(withIdentifier: RepositoryDetailsViewController.identifier, sender: self)
+            self.searchBar.resignFirstResponder()
         }).disposed(by: disposeBag)
         
-        
-//        let searchResults = searchBar.rx.text.orEmpty
-//        .throttle(.milliseconds(300), scheduler: MainScheduler.instance)
-//        .distinctUntilChanged()
-//        .flatMapLatest { query -> Observable<[RepositoryContent]> in
-//            if query.isEmpty {
-//                return .just([])
-//            }
-//            return searchGitHub(query)
-//                .catchErrorJustReturn([])
-//        }
-//        .observeOn(MainScheduler.instance)
-        
         viewModel.fetchRepositories()
-        
-    }
-    
-    private func searchGitHub() {
         
     }
 }

@@ -49,5 +49,10 @@ class RepositoriesViewControllerTests: XCTestCase {
         let vc = makeViewController()
         XCTAssertEqual(vc.title, "Github Trends")
     }
+    
+    func testCellSelection() {
+        let vc = makeViewController()
+        (vc as? RepositoriesViewController).tableView
+    }
 
 }
