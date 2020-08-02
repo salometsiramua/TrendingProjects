@@ -33,5 +33,9 @@ extension UIColor {
     class var description: UIColor {
         return UIColor(named: "Description Color") ?? UIColor.lightGray
     }
+    
+    class var title: UIColor {
+        return UIColor(named: "Title Color") ?? UIColor.black
+    }
 }
 

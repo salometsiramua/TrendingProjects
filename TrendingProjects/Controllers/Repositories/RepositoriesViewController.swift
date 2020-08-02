@@ -49,9 +49,6 @@ extension RepositoriesViewController {
         tableView.register(UINib(nibName: RepositoryTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: RepositoryTableViewCell.identifier)
         
         let observeFetchResult = viewModel.repositories.catchError { [weak self] (error) -> Observable<[RepositoryContent]> in
-            self?.errorLabel.rx.text
-            
-            
             self?.errorLabel.text = (error as? NetworkError)?.description ?? ""
             
             return Observable.of([])

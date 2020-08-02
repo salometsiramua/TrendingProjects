@@ -19,7 +19,7 @@ class UIColorTests: XCTestCase {
         XCTAssertEqual(UIColor.border, UIColor(named: "Border Color"))
         XCTAssertEqual(UIColor.readme, UIColor(named: "Readme Color"))
         XCTAssertEqual(UIColor.description, UIColor(named: "Description Color"))
-        
+        XCTAssertEqual(UIColor.title, UIColor(named: "Title Color"))
     }
 
 }
