@@ -39,14 +39,12 @@ class RepositoryDetailsViewController: UIViewController {
         userName.text = viewModel.content.author
         repositoryDescription.text = viewModel.content.description
         readMe.text = Strings.readme.rawValue
-        readMeContent.text = viewModel.content.url
         
         viewModel.avatar.bind(to: userImage.rx.image)
             .disposed(by: disposeBag)
         
-        viewModel.readme.bind(to: readMeContent.rx.text).disposed(by: disposeBag)
+        viewModel.readme.bind(to: readMeContent.rx.attributedText).disposed(by: disposeBag)
         
     }
 
 }
-

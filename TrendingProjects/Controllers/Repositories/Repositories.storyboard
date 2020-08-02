@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,20 +25,31 @@
                                 <color key="backgroundColor" red="0.78837698700000003" green="0.78787708280000002" blue="0.80784684419999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e5v-0o-Z68">
+                                <rect key="frame" x="16" y="453" width="382" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="Navigation Bar Title Color"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="nDb-UQ-1uH" firstAttribute="trailing" secondItem="meU-hP-7qK" secondAttribute="trailing" id="5nL-pZ-Vdd"/>
+                            <constraint firstItem="e5v-0o-Z68" firstAttribute="centerY" secondItem="nDb-UQ-1uH" secondAttribute="centerY" id="Evw-Ev-4eo"/>
+                            <constraint firstItem="e5v-0o-Z68" firstAttribute="leading" secondItem="nDb-UQ-1uH" secondAttribute="leading" constant="16" id="Kgk-be-GEG"/>
                             <constraint firstItem="x8P-ha-adw" firstAttribute="leading" secondItem="nDb-UQ-1uH" secondAttribute="leading" id="SAm-xg-s7n"/>
+                            <constraint firstItem="nDb-UQ-1uH" firstAttribute="trailing" secondItem="e5v-0o-Z68" secondAttribute="trailing" constant="16" id="VQU-qP-Pfn"/>
                             <constraint firstItem="meU-hP-7qK" firstAttribute="top" secondItem="x8P-ha-adw" secondAttribute="bottom" id="X5M-yw-TRa"/>
                             <constraint firstItem="x8P-ha-adw" firstAttribute="top" secondItem="nDb-UQ-1uH" secondAttribute="top" id="c43-nd-GVn"/>
                             <constraint firstItem="nDb-UQ-1uH" firstAttribute="bottom" secondItem="meU-hP-7qK" secondAttribute="bottom" id="ez9-Ba-coo"/>
                             <constraint firstItem="x8P-ha-adw" firstAttribute="trailing" secondItem="nDb-UQ-1uH" secondAttribute="trailing" id="qzp-7a-9Qj"/>
                             <constraint firstItem="meU-hP-7qK" firstAttribute="leading" secondItem="nDb-UQ-1uH" secondAttribute="leading" id="t2Z-4S-nAy"/>
+                            <constraint firstItem="e5v-0o-Z68" firstAttribute="centerX" secondItem="nDb-UQ-1uH" secondAttribute="centerX" id="toa-4l-VFN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nDb-UQ-1uH"/>
                     </view>
                     <connections>
+                        <outlet property="errorLabel" destination="e5v-0o-Z68" id="aB8-dX-fod"/>
                         <outlet property="searchBar" destination="x8P-ha-adw" id="kYg-cN-ORz"/>
                         <outlet property="tableView" destination="meU-hP-7qK" id="YUm-i4-qtA"/>
                         <segue destination="tfA-rR-Czi" kind="show" identifier="RepositoryDetailsViewController" id="4ty-6N-ivU"/>
@@ -58,4 +70,9 @@
             <point key="canvasLocation" x="632" y="4"/>
         </scene>
     </scenes>
+    <resources>
+        <namedColor name="Navigation Bar Title Color">
+            <color red="0.3970000147819519" green="0.48500001430511475" blue="0.53700000047683716" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+    </resources>
 </document>

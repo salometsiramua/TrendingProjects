@@ -10,15 +10,16 @@ import UIKit
 import RxSwift
 
 class RepositoriesViewController: UIViewController {
-    
+
+    @IBOutlet private(set) weak var errorLabel: UILabel!
     @IBOutlet private(set) weak var tableView: UITableView!
     @IBOutlet private(set) weak var searchBar: UISearchBar!
     
     lazy var viewModel: RepositoriesViewControllerViewModelProtocol = RepositoriesViewControllerViewModel()
     
     private let disposeBag = DisposeBag()
-    private var selectedItem: RepositoryContent?
-    
+    private(set) var selectedItem: RepositoryContent?
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,7 +33,6 @@ class RepositoriesViewController: UIViewController {
         navigationItem.backBarButtonItem = UIBarButtonItem(title: Strings.backButtonTitle.rawValue, style: .plain, target: nil, action: nil)
         
         bindTableView()
-        
     }
     
 }
@@ -48,33 +48,41 @@ extension RepositoriesViewController {
         
         tableView.register(UINib(nibName: RepositoryTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: RepositoryTableViewCell.identifier)
         
-        let observeRepositories = viewModel.repositories
-        let observeSearchText = searchBar.rx.text
+        let observeFetchResult = viewModel.repositories.catchError { [weak self] (error) -> Observable<[RepositoryContent]> in
+            self?.errorLabel.rx.text
+            
+            
+            self?.errorLabel.text = (error as? NetworkError)?.description ?? ""
+            
+            return Observable.of([])
+        }
+        
+        let observeSearchText = searchBar.rx.text.debounce(.milliseconds(300), scheduler: MainScheduler.instance).distinctUntilChanged()
         
         Observable.combineLatest(
-            observeRepositories, observeSearchText,
-            resultSelector: { value1, value2 in
-                return (value1.filter({ (content) -> Bool in
-                    content.contains(string: value2 ?? "")
+            observeFetchResult, observeSearchText,
+            resultSelector: { repositories, searchText in
+                return (repositories.filter({ (content) -> Bool in
+                    content.contains(string: searchText ?? "")
                 }))
             }).bind(to: tableView.rx.items(cellIdentifier: RepositoryTableViewCell.identifier)) { row, model, cell in
-            
+
             guard let cell = cell as? RepositoryTableViewCell else {
                 return
             }
-            
             cell.configure(with: model)
-            
-        }.disposed(by: disposeBag)
+
+            }.disposed(by: disposeBag)
         
         tableView.rx.modelSelected(RepositoryContent.self).subscribe(onNext: { item in
             self.selectedItem = item
+            
             self.performSegue(withIdentifier: RepositoryDetailsViewController.identifier, sender: self)
             self.searchBar.resignFirstResponder()
+            
         }).disposed(by: disposeBag)
         
         viewModel.fetchRepositories()
-        
     }
 }
 

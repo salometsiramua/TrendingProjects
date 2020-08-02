@@ -8,22 +8,23 @@
 
 import Foundation
 import RxSwift
+import Ink
 
 protocol ReadMeLoader {
-    func read(from url: String) -> Observable<String>
+    func read(from url: String) -> Observable<NSAttributedString>
 }
 
 struct ReadMeLoaderService: ReadMeLoader {
     
-    private let session: URLSession
+    private let session: NetworkSession
     
-    init(session: URLSession = .shared) {
+    init(session: NetworkSession = URLSession.shared) {
         self.session = session
     }
     
-    func read(from url: String) -> Observable<String> {
+    func read(from url: String) -> Observable<NSAttributedString> {
         
-        return Observable<String>.create { (observer) in
+        return Observable<NSAttributedString>.create { (observer) in
             
             guard Reachability.isConnectedToNetwork else {
                 observer.onError(NetworkError.noInternetConnection)
@@ -35,10 +36,21 @@ struct ReadMeLoaderService: ReadMeLoader {
                 return Disposables.create()
             }
             
-            URLSession.shared.dataTask(with: url) { (data, _, _) in
-                guard let data = data else { return }
+            self.session.dataTask(with: URLRequest(url: url)) { (data, _, _) in
+                guard let data = data, let markdown = String(data: data, encoding: .utf8) else {
+                    observer.onError(NetworkError.responseDataIsNil)
+                    return
+                }
                 
-                observer.onNext(String(data: data, encoding: .utf8) ?? "Could not loaad data")
+                let parser = MarkdownParser()
+                let result = parser.parse(markdown)
+
+                guard let attributedString = result.html.htmlToAttributedString else {
+                    observer.onError(NetworkError.responseParsingToJsonDictionary)
+                    return
+                }
+                
+                observer.onNext(attributedString)
                 
             }.resume()
             
@@ -46,8 +58,7 @@ struct ReadMeLoaderService: ReadMeLoader {
         }
     }
     
-    
-    func getReadMeUrl(from url: String) -> URL? {
+    private func getReadMeUrl(from url: String) -> URL? {
         
         guard let range = url.range(of: "github.com/") else { return nil }
         

@@ -12,7 +12,7 @@ import RxSwift
 
 struct RepositoryDetailsViewControllerViewModelMock: RepositoryDetailsViewControllerViewModelProtocol {
     
-    var readme = PublishSubject<String>()
+    var readme = PublishSubject<NSAttributedString>()
 
     var avatar = PublishSubject<UIImage>()
     
@@ -42,7 +42,10 @@ class RepositoryDetailsViewControllerTests: XCTestCase {
     func testIBOutletsNotNil() {
         let vc = makeViewController()
         XCTAssertNotNil(vc.ratingView)
-        
+        XCTAssertNotNil(vc.userName)
+        XCTAssertNotNil(vc.userImage)
+        XCTAssertNotNil(vc.readMeContent)
+        XCTAssertNotNil(vc.readMe)
     }
     
     func testViewControllerTitle() {
@@ -57,4 +60,5 @@ class RepositoryDetailsViewControllerTests: XCTestCase {
         XCTAssertEqual(model.content.author, "author")
         XCTAssertEqual(model.content.description, "description")
     }
+    
 }

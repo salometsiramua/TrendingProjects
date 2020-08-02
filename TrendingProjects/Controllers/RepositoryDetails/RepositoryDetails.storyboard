@@ -71,7 +71,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R1N-36-QyW" userLabel="Gray view">
-                                        <rect key="frame" x="0.0" y="271.5" width="414" height="128"/>
+                                        <rect key="frame" x="0.0" y="271.5" width="414" height="107.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y1Z-FF-ZzZ">
                                                 <rect key="frame" x="16" y="50" width="382" height="25.5"/>
@@ -79,8 +79,8 @@
                                                 <color key="textColor" name="Readme Color"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1bT-N1-bBh">
-                                                <rect key="frame" x="16" y="91.5" width="382" height="20.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1bT-N1-bBh">
+                                                <rect key="frame" x="16" y="91.5" width="382" height="0.0"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" name="Description Color"/>
                                                 <nil key="highlightedColor"/>
@@ -147,13 +147,13 @@
     </scenes>
     <resources>
         <namedColor name="Description Color">
-            <color red="0.66723376509999999" green="0.71712565419999996" blue="0.74510353799999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.66699999570846558" green="0.71700000762939453" blue="0.74500000476837158" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="Gray Background Color">
             <color red="0.96899998188018799" green="0.96899998188018799" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Readme Color">
-            <color red="0.1814575195" green="0.2540547252" blue="0.29804590339999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.1809999942779541" green="0.25400000810623169" blue="0.29800000786781311" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="Username Color">
             <color red="0.92699998617172241" green="0.39100000262260437" blue="0.21600000560283661" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

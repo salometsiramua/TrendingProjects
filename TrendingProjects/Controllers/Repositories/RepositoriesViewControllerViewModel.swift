@@ -32,7 +32,9 @@ class RepositoriesViewControllerViewModel: RepositoriesViewControllerViewModelPr
         
         repositoriesFetcher.fetch().subscribe(onNext: { (response) in
             self.repositories.onNext(response)
-            }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
+        }, onError: { (error) in
+            self.repositories.onError(error)
+        }, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
 
     }
     

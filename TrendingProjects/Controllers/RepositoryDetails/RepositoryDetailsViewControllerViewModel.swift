@@ -12,12 +12,12 @@ import RxSwift
 protocol RepositoryDetailsViewControllerViewModelProtocol {
     var content: RepositoryContent { get }
     var avatar: PublishSubject<UIImage> { get }
-    var readme: PublishSubject<String> { get }
+    var readme: PublishSubject<NSAttributedString> { get }
 }
 
 class RepositoryDetailsViewControllerViewModel: RepositoryDetailsViewControllerViewModelProtocol {
     
-    var readme = PublishSubject<String>()
+    var readme = PublishSubject<NSAttributedString>()
     var avatar = PublishSubject<UIImage>()
     
     private(set) var content: RepositoryContent

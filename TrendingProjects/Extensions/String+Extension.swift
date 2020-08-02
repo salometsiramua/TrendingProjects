@@ -14,8 +14,16 @@ extension String {
     }
 }
 
-extension Int {
-    func contains(substring: String) -> Bool {
-        return self.description.range(of: substring) != nil
+//MARK: - HtmlToAttributedString
+extension String {
+    
+    var htmlToAttributedString: NSAttributedString? {
+        guard let data = data(using: .utf8) else { return nil }
+        do {
+            return try NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding:String.Encoding.utf8.rawValue], documentAttributes: nil)
+        } catch {
+            return nil
+        }
     }
+
 }
